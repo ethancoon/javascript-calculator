@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #cedee0;
+    background-color: #455a75;
 }
 
 .container {
@@ -32,10 +32,11 @@ h1 {
     background-color: #2d3645;    
 }
 
-.calc-output {
+.calc-display {
     display: flex;
+    flex-direction: column;
     justify-content: right;
-    align-items: center;
+    text-align: right;
     background-color: #f7fcfc;
     padding: 15px;
     margin: 5px 0;
@@ -45,14 +46,26 @@ h1 {
     font-size: 32px;
 }
 
-button {
+.calc-history {
+    font-size: 16px;;
+}
+
+.calc-calculation {
+    font-size: 26px;
+}
+
+.symbol {
     background-color: #e6e6e6;
     border-radius: 7px;
     border: 3px solid black;
     font-size: 24px;
 }
 
-.zero {
+.symbol:active {
+    opacity: 0.8;
+}
+
+#zero {
     grid-column: 1/-3;
 }
 
