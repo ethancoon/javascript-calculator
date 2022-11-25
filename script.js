@@ -21,7 +21,7 @@ function multiply(num1, num2) {
 };
 
 function divide(num1, num2) {
-    if (b === 0) {
+    if (num2 === 0) {
         return 'Error';
     }
     return num1 / num2;
@@ -30,6 +30,10 @@ function divide(num1, num2) {
 function power(num1, num2) {
     return num1 ** num2;
 };
+
+function roundNumber(number) {
+    return Math.round(number * 1000) / 1000;
+}
 
 function calculate(num1, operator, num2) {
     if (operator === 'add') {
@@ -40,11 +44,13 @@ function calculate(num1, operator, num2) {
         answer = multiply(+num1, +num2);
     } else if(operator === 'divide') {
         answer = divide(+num1, +num2);
+    } else if(operator === 'power') {
+        answer = power(+num1, +num2);
     }
     operator = ''
     num1 = ''
     num2 = ''
-    return answer;
+    return roundNumber(answer);
 };
 
 function operate(button) {
@@ -69,11 +75,15 @@ function displayNumber(button) {
 };
 
 function displayDecimal(button) {
-
+    if (output.textContent.includes('.')) {
+        return;
+    } else if (output.textContent !== '') {
+        output.textContent += button.textContent;
+    }
 };
 
 function displayCalculation(operator) {
-    if(operator === 'add') {
+    if (operator === 'add') {
         return `${num1} + ${num2} = ${calculate(num1, operator, num2)}`;
     } else if(operator === 'subtract') {
         return `${num1} - ${num2} = ${calculate(num1, operator, num2)}`;
@@ -81,11 +91,17 @@ function displayCalculation(operator) {
         return `${num1} × ${num2} = ${calculate(num1, operator, num2)}`;
     } else if(operator === 'divide') {
         return `${num1} ÷ ${num2} = ${calculate(num1, operator, num2)}`;
+    } else if(operator === 'power') {
+        return `${num1} ^ ${num2} = ${calculate(num1, operator, num2)}`;
     }
-}
+};
 
 function changeSign(button) {
-    
+    if(button.id === 'sign') {
+        number = output.textContent
+        number *= -1;
+        output.textContent = number;
+    }
 };
 
 function clearOutput(button) {
